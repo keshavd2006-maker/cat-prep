@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3b3fbf">
+<title>CAT 2029 Prep</title>
+<style>
+:root{--bg:#f2f4f7;--surface:#ffffff;--ink:#1b2433;--muted:#5d6879;--line:#d5dae2;--accent:#3b3fbf;--accent-ink:#ffffff;--ok:#1f8a5b;--bad:#c23b3b;--hl:#f6e27a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--surface:#1b2029;--ink:#e8ebf1;--muted:#9aa4b5;--line:#2c3341;--accent:#8c90ff;--accent-ink:#12151c;--ok:#4cc38a;--bad:#ff8585;--hl:#6b5d14}}
+:root[data-theme="dark"]{--bg:#12151c;--surface:#1b2029;--ink:#e8ebf1;--muted:#9aa4b5;--line:#2c3341;--accent:#8c90ff;--accent-ink:#12151c;--ok:#4cc38a;--bad:#ff8585;--hl:#6b5d14}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:76px}
+header{padding:22px 18px 8px;max-width:40rem;margin:0 auto}
+.days{font:700 3.2rem/1 Georgia,"Iowan Old Style",serif;letter-spacing:-.02em}
+.sub{color:var(--muted);margin:4px 0 12px}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0}
+main{max-width:40rem;margin:0 auto;padding:8px 18px 24px}
+.tab{display:none}.tab.on{display:block}
+h2{font:700 1.4rem/1.25 Georgia,"Iowan Old Style",serif;margin:14px 0 8px}
+h3{font-size:1.05rem;margin:0 0 2px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 12px}
+.meta{color:var(--muted);font-size:.9rem;margin:0 0 8px}
+.bub{width:18px;height:18px;border-radius:50%;border:2px solid var(--accent);display:inline-block;vertical-align:-3px;margin-right:8px}
+.bub.on{background:var(--accent)}
+.bubs{margin:10px 0 0}.bubs .bub{margin-right:6px}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--line)}
+.chk input{margin-top:5px;width:18px;height:18px;accent-color:var(--accent);flex:none}
+.lesson p,.lesson li{font-family:Georgia,"Iowan Old Style",serif;line-height:1.65}
+.lesson ol,.lesson ul{padding-left:1.2rem}
+mark{background:var(--hl);color:inherit;padding:0 3px;border-radius:2px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-variant-numeric:tabular-nums}
+.grid span{background:var(--bg);border-radius:6px;padding:6px 8px;font-size:.95rem}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);padding:9px 14px}
+button.ghost{background:transparent;color:var(--accent)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,nav button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.row{display:flex;gap:8px}
+input[type=text],input:not([type]),textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+textarea{min-height:64px;resize:vertical}
+label.f{display:block;margin:10px 0 4px;font-size:.92rem;color:var(--muted)}
+.fb{margin:8px 0 0;font-size:.95rem}.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.timer{display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;z-index:2}
+#tm{font:700 1.6rem Georgia,serif;font-variant-numeric:tabular-nums}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;border:0;border-radius:0;background:none;color:var(--muted);padding:14px 2px 12px;font-size:.82rem}
+nav button[aria-selected=true]{color:var(--accent);box-shadow:inset 0 3px 0 var(--accent);font-weight:700}
+.entry{border-top:1px solid var(--line);padding:8px 0;font-size:.95rem}
+.entry b{display:block}
+.del{float:right;padding:2px 8px;font-size:.85rem}
+.note{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .3s}}
+</style>
+</head>
+<body>
+<header>
+  <div class="days" id="days">--</div>
+  <p class="sub">days to CAT (about 25 Nov 2029). <span id="prog"></span></p>
+  <div class="bar" role="progressbar" aria-label="Plan progress"><i id="barfill"></i></div>
+  <div class="bubs" id="hb" aria-label="Phases completed"></div>
+</header>
+<main>
+<section id="plan" class="tab on">
+  <h2>Your roadmap</h2>
+  <div id="phases"></div>
+  <p class="note">Tick tasks as you finish them. Progress is saved on this device.</p>
+</section>
+
+<section id="lesson" class="tab lesson">
+  <h2>Lesson 1: Percentages</h2>
+  <p>Percent means <mark>per hundred</mark>. x% of y = (x/100) × y. Percentages sit under profit and loss, interest and data interpretation, so this lesson pays off everywhere.</p>
+  <div class="card"><h3>Memorise these</h3>
+    <div class="grid"><span>1/2 = 50%</span><span>1/3 = 33.33%</span><span>1/4 = 25%</span><span>1/5 = 20%</span><span>1/6 = 16.67%</span><span>1/7 = 14.28%</span><span>1/8 = 12.5%</span><span>1/9 = 11.11%</span><span>1/10 = 10%</span><span>1/11 = 9.09%</span></div>
+    <p class="note">Multiples follow: 3/8 = 3 × 12.5 = 37.5%.</p></div>
+  <h3>Six techniques</h3>
+  <ol>
+    <li><b>Percentage change</b> = (New − Old) ÷ Old × 100. The base is always the <mark>original</mark> value.</li>
+    <li><b>Successive changes</b>: a% then b% gives a + b + ab/100. Up 20% then down 20% is 20 − 20 − 4 = <mark>−4%</mark>.</li>
+    <li><b>A more than B</b>: if A is x% more than B, then B is x/(100+x) × 100 percent less than A. For x = 25 that is 20%.</li>
+    <li><b>Price and consumption</b>: if price rises x%, cut consumption by x/(100+x) × 100 percent to keep spending equal.</li>
+    <li><b>Multipliers</b>: +20% is ×1.2, −20% is ×0.8, +10% is ×1.1, −10% is ×0.9. Multiply them all. Fastest method in the exam.</li>
+    <li><b>Ask "percent of what?"</b> Most CAT percentage errors come from the wrong base.</li>
+  </ol>
+  <div class="card"><h3>Worked example</h3>
+    <p>A student scores 40% and fails by 30 marks. At 50% she would pass by 20 marks. Find the maximum marks.</p>
+    <p>The gap between 50% and 40% is 30 + 20 = 50 marks. So 10% of the total is 50, and the total is <mark>500</mark>.</p></div>
+  <button data-go="practice">Try the practice set</button>
+</section>
+
+<section id="practice" class="tab">
+  <h2>Practice set 1</h2>
+  <div class="timer"><span id="tm">15:00</span><button id="start" class="ghost">Start timer</button></div>
+  <p class="note">15 minutes, 10 questions. Type each answer, then check it. <span id="score"></span></p>
+  <div id="qs"></div>
+</section>
+
+<section id="daily" class="tab">
+  <h2>Daily reading</h2>
+  <p class="sub" id="streak"></p>
+  <div class="card">
+    <p class="note">Read one editorial or long article (800 to 1,200 words). Read it once without stopping, close it, then write:</p>
+    <label class="f" for="d_src">What did you read?</label><input id="d_src" type="text">
+    <label class="f" for="d_idea">Main idea in one sentence</label><textarea id="d_idea"></textarea>
+    <label class="f" for="d_tone">Author's tone</label><input id="d_tone" type="text" placeholder="critical, neutral, sceptical...">
+    <label class="f" for="d_words">Three new words and their meaning from context</label><textarea id="d_words"></textarea>
+    <p><button id="d_save">Save today's entry</button> <span id="d_msg" class="note"></span></p>
+  </div>
+  <div id="d_list"></div>
+</section>
+
+<section id="log" class="tab">
+  <h2>Error log</h2>
+  <p class="note">Write down every mistake: what went wrong, and the right approach. Review it weekly.</p>
+  <div class="card">
+    <label class="f" for="l_topic">Topic</label><input id="l_topic" type="text" placeholder="e.g. Percentages">
+    <label class="f" for="l_what">What went wrong</label><textarea id="l_what"></textarea>
+    <label class="f" for="l_fix">Correct approach</label><textarea id="l_fix"></textarea>
+    <p><button id="l_add">Add to log</button></p>
+  </div>
+  <div id="l_list"></div>
+</section>
+</main>
+
+<nav role="tablist" aria-label="Sections">
+  <button role="tab" data-tab="plan" aria-selected="true">Plan</button>
+  <button role="tab" data-tab="lesson" aria-selected="false">Lesson</button>
+  <button role="tab" data-tab="practice" aria-selected="false">Practice</button>
+  <button role="tab" data-tab="daily" aria-selected="false">Daily</button>
+  <button role="tab" data-tab="log" aria-selected="false">Log</button>
+</nav>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var S={done:{},best:null,daily:{},log:[]};
+try{var r=localStorage.getItem('cat2029');if(r){var o=JSON.parse(r);for(var k in o)S[k]=o[k]}}catch(e){}
+function save(){try{localStorage.setItem('cat2029',JSON.stringify(S))}catch(e){}}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function key(d){return d.toLocaleDateString('en-CA')}
+
+var P=[
+{n:"Phase 0: Habit building",w:"Now to Mar 2027",h:"4 to 5 hrs a week",t:["Read editorials or long-form for 30 to 45 minutes daily","Rebuild school maths with NCERT Class 6 to 10","Memorise tables to 20, squares to 30, cubes to 15, fraction-percent table","Mental math for 10 minutes a day"]},
+{n:"Phase 1: Foundations",w:"Apr to Dec 2027",h:"6 to 8 hrs a week",t:["Quant arithmetic: percentages, profit and loss, ratio, averages, time-speed-work, mixtures, interest","Quant number systems","VARC: RC technique, vocabulary in context, basic grammar","DILR: simple tables, bar graphs, easy arrangements"]},
+{n:"Phase 2: Core building",w:"Jan 2028 to Jun 2029",h:"8 to 10 hrs a week, lighter in exams and moots",t:["Algebra, geometry, mensuration, modern maths, advanced number theory","Daily RC, para-jumbles, para-summary, odd-one-out","One full DILR set a day across all set types","One previous-year CAT sectional a week","First full mock around Jan 2029, for diagnosis only"]},
+{n:"Phase 3: Advanced and mock transition",w:"Jul to Aug 2029",h:"25 to 30 hrs a week",t:["Close every remaining syllabus gap","1 to 2 mocks a week, with twice as long spent on analysis"]},
+{n:"Phase 4: Mock-heavy",w:"Sep to Nov 2029",h:"3 to 4 mocks a week",t:["Complete 25 to 30 mocks","Fix your section strategy: what to attempt and when to skip","Last 10 days: light revision only, nothing new"]}
+];
+
+function renderPlan(){
+  var total=0,done=0,full=0,hb='';
+  var html=P.map(function(p,i){
+    var all=true;
+    var items=p.t.map(function(x,j){var id='p'+i+'t'+j,c=!!S.done[id];total++;if(c)done++;else all=false;
+      return '<label class="chk"><input type="checkbox" data-id="'+id+'"'+(c?' checked':'')+'><span>'+esc(x)+'</span></label>'});
+    if(all)full++;
+    hb+='<span class="bub'+(all?' on':'')+'"></span>';
+    return '<article class="card"><h3><span class="bub'+(all?' on':'')+'"></span>'+esc(p.n)+'</h3><p class="meta">'+esc(p.w)+' · '+esc(p.h)+'</p>'+items.join('')+'</article>';
+  }).join('');
+  $('#phases').innerHTML=html;
+  $('#hb').innerHTML=hb;
+  $('#prog').textContent=done+' of '+total+' tasks done.';
+  $('#barfill').style.width=(total?done/total*100:0)+'%';
+}
+$('#phases').addEventListener('change',function(e){var id=e.target.getAttribute('data-id');if(id){S.done[id]=e.target.checked;save();renderPlan()}});
+
+var days=Math.ceil((new Date('2029-11-25T00:00:00')-new Date())/864e5);
+$('#days').textContent=days>0?days.toLocaleString():'0';
+
+function show(t){
+  document.querySelectorAll('.tab').forEach(function(s){s.classList.toggle('on',s.id===t)});
+  document.querySelectorAll('nav button').forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-tab')===t)});
+  window.scrollTo(0,0);
+}
+document.querySelector('nav').addEventListener('click',function(e){var t=e.target.getAttribute('data-tab');if(t)show(t)});
+document.addEventListener('click',function(e){var g=e.target.getAttribute&&e.target.getAttribute('data-go');if(g)show(g)});
+
+var Q=[
+["What is 35% of 240?",84,"0.35 × 240 = 84."],
+["Express 3/8 as a percentage.",37.5,"3 × 12.5 = 37.5%."],
+["A's salary is 25% more than B's. B's salary is what percent less than A's?",20,"25/125 × 100 = 20%."],
+["A town of 50,000 grows 10%, then 20%. What is the final population?",66000,"1.1 × 1.2 = 1.32, and 50,000 × 1.32 = 66,000."],
+["A student scores 40% and fails by 30 marks. At 50% she passes by 20 marks. Maximum marks?",500,"The 50-mark gap is 10% of the total, so the total is 500."],
+["Sugar's price rises 25%. By what percent must a family cut consumption to keep spending the same?",20,"25/125 × 100 = 20%."],
+["The winner of a two-candidate election gets 55% of the votes and wins by 2,000 votes. How many votes were cast?",20000,"The margin is 55 − 45 = 10% of the total, and 10% = 2,000."],
+["A machine loses 10% of its value each year. After 2 years it is worth ₹72,900. What was its original value in ₹?",90000,"0.9 × 0.9 = 0.81, and 72,900 ÷ 0.81 = 90,000."],
+["A is 20% more than B. C is 25% less than A. C is what percent more than B? (Enter a negative number if less.)",-10,"C = 0.75 × 1.2 B = 0.9 B, which is 10% less."],
+["Goods are marked up 40% over cost, then sold at a 25% discount. What is the profit percent? (Negative if a loss.)",5,"1.4 × 0.75 = 1.05, a 5% profit."]
+];
+var res=[];
+$('#qs').innerHTML=Q.map(function(q,i){return '<div class="card"><p><b>'+(i+1)+'.</b> '+esc(q[0])+'</p><div class="row"><input id="a'+i+'" inputmode="decimal" autocomplete="off" aria-label="Answer '+(i+1)+'"><button data-chk="'+i+'">Check</button></div><p class="fb" id="f'+i+'" aria-live="polite"></p></div>'}).join('');
+function updScore(){
+  var n=res.filter(function(x){return x===true}).length,c=res.filter(function(x){return x!==undefined}).length;
+  var s='Score on first tries: '+n+'/'+c+'.';
+  if(c===Q.length){if(S.best===null||n>S.best){S.best=n;save()}}
+  if(S.best!==null)s+=' Best: '+S.best+'/10.';
+  $('#score').textContent=s;
+}
+$('#qs').addEventListener('click',function(e){
+  var i=e.target.getAttribute('data-chk'),l=e.target.getAttribute('data-log');
+  if(l!==null){var q=Q[+l];S.log.unshift({t:'Percentages',w:q[0],f:q[2]+' Answer: '+q[1],d:key(new Date())});save();renderLog();e.target.disabled=true;e.target.textContent='Added';return}
+  if(i===null)return;i=+i;
+  var v=parseFloat(String($('#a'+i).value).replace(/,/g,'')),fb=$('#f'+i);
+  if(isNaN(v)){fb.className='fb';fb.textContent='Enter a number first.';return}
+  var ok=Math.abs(v-Q[i][1])<0.01;
+  if(res[i]===undefined)res[i]=ok;
+  fb.className='fb '+(ok?'ok':'no');
+  fb.innerHTML=(ok?'Correct. ':'Not quite. ')+esc(Q[i][2])+(ok?'':' <button class="ghost del" data-log="'+i+'">Add to error log</button>');
+  updScore();
+});
+updScore();
+var left=900,iv=null;
+function tshow(){var m=Math.floor(left/60),s=left%60;$('#tm').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s}
+$('#start').addEventListener('click',function(){
+  if(iv)clearInterval(iv);left=900;tshow();
+  iv=setInterval(function(){left--;tshow();if(left<=0){clearInterval(iv);iv=null;$('#tm').textContent='Time up'}},1000);
+  this.textContent='Restart timer';
+});
+
+function renderDaily(){
+  var t=key(new Date()),e=S.daily[t]||{};
+  $('#d_src').value=e.s||'';$('#d_idea').value=e.i||'';$('#d_tone').value=e.o||'';$('#d_words').value=e.w||'';
+  var d=new Date(),n=0;if(!S.daily[key(d)])d.setDate(d.getDate()-1);
+  while(S.daily[key(d)]){n++;d.setDate(d.getDate()-1)}
+  $('#streak').textContent=n?n+(n===1?' day':' days')+' in a row.':'No streak yet. Save today\'s entry to start one.';
+  var ks=Object.keys(S.daily).sort().reverse().slice(0,7);
+  $('#d_list').innerHTML=ks.map(function(k){var x=S.daily[k];return '<div class="entry"><b>'+esc(k)+(x.s?' · '+esc(x.s):'')+'</b>'+esc(x.i||'')+(x.o?'<br><span class="note">Tone: '+esc(x.o)+'</span>':'')+'</div>'}).join('');
+}
+$('#d_save').addEventListener('click',function(){
+  var v={s:$('#d_src').value.trim(),i:$('#d_idea').value.trim(),o:$('#d_tone').value.trim(),w:$('#d_words').value.trim()};
+  if(!v.i){$('#d_msg').textContent='Write the main idea first.';return}
+  S.daily[key(new Date())]=v;save();$('#d_msg').textContent='Saved.';renderDaily();
+});
+
+function renderLog(){
+  $('#l_list').innerHTML=S.log.length?S.log.map(function(x,i){return '<div class="entry"><button class="ghost del" data-del="'+i+'" aria-label="Delete entry">Delete</button><b>'+esc(x.t||'Untitled')+' · '+esc(x.d||'')+'</b>'+esc(x.w||'')+'<br><span class="note">Fix: '+esc(x.f||'')+'</span></div>'}).join(''):'<p class="note">Nothing logged yet. Wrong answers in the practice set can be added here with one tap.</p>';
+}
+$('#l_add').addEventListener('click',function(){
+  var w=$('#l_what').value.trim();if(!w)return;
+  S.log.unshift({t:$('#l_topic').value.trim(),w:w,f:$('#l_fix').value.trim(),d:key(new Date())});save();
+  $('#l_topic').value='';$('#l_what').value='';$('#l_fix').value='';renderLog();
+});
+$('#l_list').addEventListener('click',function(e){var i=e.target.getAttribute('data-del');if(i!==null){S.log.splice(+i,1);save();renderLog()}});
+
+renderPlan();renderDaily();renderLog();
+})();
+</script>
+</body>
+</html>
